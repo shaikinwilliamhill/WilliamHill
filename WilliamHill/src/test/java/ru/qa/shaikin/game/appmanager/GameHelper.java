@@ -5,25 +5,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
-public class GameHelper {
-  private FirefoxDriver wd;
+public class GameHelper extends HelperBase {
 
   public GameHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void loginForm(String username, String password) {
-    wd.findElement(By.id("login-form-username")).click();
-    wd.findElement(By.id("login-form-username")).clear();
-    wd.findElement(By.id("login-form-username")).sendKeys(username);
-    wd.findElement(By.id("login-form-password")).click();
-    wd.findElement(By.id("login-form-password")).clear();
-    wd.findElement(By.id("login-form-password")).sendKeys(password);
-    wd.findElement(By.cssSelector("button.sb-btn:nth-child(4)")).click();
+    type(username, By.id("login-form-username"));
+    type(password, By.id("login-form-password"));
+    click(By.cssSelector("button.sb-btn:nth-child(4)"));
   }
 
   public void playGame() {
-    wd.findElement(By.cssSelector("button.tile-menu__button:nth-child(3)")).click();
+    click(By.cssSelector("button.tile-menu__button:nth-child(3)"));
   }
 
   public void hoverOverGame() throws InterruptedException {
@@ -34,12 +29,10 @@ public class GameHelper {
   }
 
   public void writeGame(String game) {
-    wd.findElement(By.xpath("//div[@class='sc-eNQAEJ gDsKHW']/input")).click();
-    wd.findElement(By.xpath("//div[@class='sc-eNQAEJ gDsKHW']/input")).clear();
-    wd.findElement(By.xpath("//div[@class='sc-eNQAEJ gDsKHW']/input")).sendKeys(game);
+    type(game, By.xpath("//div[@class='sc-eNQAEJ gDsKHW']/input"));
   }
 
   public void startSearch() {
-    wd.findElement(By.xpath("//header[@class='wf-header desktop-version']/div[2]/button")).click();
+    click(By.xpath("//header[@class='wf-header desktop-version']/div[2]/button"));
   }
 }
